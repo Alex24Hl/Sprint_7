@@ -1,8 +1,12 @@
 import allure
 import pytest
 import requests
-import helpers
+import sys
+
+from tests import helpers
 from urls import BASE_URL
+
+sys.path.insert(1, "../pages")
 
 class TestLoginCourier:
     @pytest.fixture(autouse=True)

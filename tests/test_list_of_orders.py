@@ -1,6 +1,10 @@
 import allure
 import requests
-from helpers import BASE_URL
+import sys
+
+from tests.helpers import BASE_URL
+
+sys.path.insert(1, "../pages")
 
 class TestGetOrdersList:
     @allure.title('Тест на получение списка заказов')

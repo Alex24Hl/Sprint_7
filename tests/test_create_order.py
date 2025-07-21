@@ -1,6 +1,10 @@
 import allure
 import pytest
-from helpers import create_test_order
+import sys
+
+from tests.helpers import create_test_order
+
+sys.path.insert(1, "../pages")
 
 class TestCreateOrder:
     @allure.title('Тест на создание заказа')
