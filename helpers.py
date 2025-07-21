@@ -1,9 +1,10 @@
+import allure
 import requests
 import random
 import string
 from urls import BASE_URL
 
-
+@allure.title('Метод регистрации нового курьера возвращения списка из логина и пароля')
 def register_new_courier_and_return_login_password():
 
     login_pass = []
@@ -26,6 +27,7 @@ def register_new_courier_and_return_login_password():
 
     return login_pass
 
+@allure.title('Метод удаления созданного курьера после теста')
 def delete_courier(login, password):
     login_response = requests.post(
         f'{BASE_URL}/courier/login',
@@ -36,6 +38,7 @@ def delete_courier(login, password):
     courier_id = login_response.json().get('id')
     return requests.delete(f'{BASE_URL}/courier/{courier_id}')
 
+@allure.title('Метод создания тестового заказа')
 def create_test_order(color=None):
     payload = {
         "firstName": "Тест",
@@ -50,6 +53,7 @@ def create_test_order(color=None):
     }
     return requests.post(f'{BASE_URL}/orders', json=payload)
 
+@allure.title('Метод генерации случайной строки')
 def generate_random_string(length):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for _ in range(length))

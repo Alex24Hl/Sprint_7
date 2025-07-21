@@ -1,3 +1,4 @@
+import allure
 import pytest
 import requests
 import helpers
@@ -5,6 +6,7 @@ from urls import BASE_URL
 
 
 class TestCreateCourier:
+    @allure.title('Тест на успешное создание курьера')
     def test_create_courier_success(self):
         result = helpers.register_new_courier_and_return_login_password()
         assert len(result) == 3, "Курьер не был создан"
@@ -20,6 +22,7 @@ class TestCreateCourier:
         delete_response = helpers.delete_courier(login, password)
         assert delete_response.status_code == 200
 
+    @allure.title('Тест на проверку невозможности создания дубликат')
     def test_create_duplicate_courier(self):
         first_result = helpers.register_new_courier_and_return_login_password()
         assert len(first_result) == 3
@@ -38,6 +41,7 @@ class TestCreateCourier:
         delete_response = helpers.delete_courier(login, password)
         assert delete_response.status_code == 200
 
+    @allure.title('Тест на отсутствие обязательных полей')
     @pytest.mark.parametrize("missing_field", ["login", "password", "firstName"])
     def test_create_courier_missing_field(self, missing_field):
         payload = {

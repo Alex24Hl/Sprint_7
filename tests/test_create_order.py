@@ -1,7 +1,9 @@
+import allure
 import pytest
 from helpers import create_test_order
 
 class TestCreateOrder:
+    @allure.title('Тест на создание заказа')
     @pytest.mark.parametrize("color", [["BLACK"], ["GREY"], ["BLACK", "GREY"],[]])
     def test_create_order_with_colors(self, color):
         response = create_test_order(color)
